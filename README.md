@@ -6,15 +6,8 @@ This project predicts **personal expenses** using demographic and lifestyle attr
 ---
 
 ## Problem Statement
-The objective of this project is to predict individual expenses based on the following features:
-- Age
-- Sex
-- BMI
-- Number of children
-- Smoker status
-- Region
-
-Accurate expense prediction can assist insurers, analysts, and individuals in cost estimation, budgeting, and risk assessment.
+- The objective of this project is to predict individual expenses based on features like age, sex, bmi, number of children, smoker status, region
+- Accurate expense prediction can assist insurers, analysts, and individuals in cost estimation, budgeting, and risk assessment.
 
 ---
 
@@ -31,7 +24,7 @@ Accurate expense prediction can assist insurers, analysts, and individuals in co
 - Target feature:
   - `expenses`
 
-The dataset undergoes preprocessing including encoding of categorical variables and feature transformation through a pipeline.
+- The dataset undergoes preprocessing including encoding of categorical variables and feature transformation through a pipeline.
 
 ---
 
@@ -47,6 +40,20 @@ The dataset undergoes preprocessing including encoding of categorical variables 
 
 ---
 
+## Logging and Artifacts
+- All training steps, model evaluations, and errors are logged in the `logs/` directory.
+- Trained models, preprocessors, and intermediate outputs are stored in the `artifacts/` directory for reproducibility and reuse.
+
+---
+
+## Tech Stack
+- Pandas, Numpy
+- Matplotlib, Seaborn
+- Scikit-learn
+- Flask
+
+---
+
 ## Usage Procedure
 1. Run the application.
 2. The **Home Page** is displayed.
@@ -56,24 +63,10 @@ The dataset undergoes preprocessing including encoding of categorical variables 
 
 ---
 
-## Logging and Artifacts
-- All training steps, model evaluations, and errors are logged in the `logs/` directory.
-- Trained models, preprocessors, and intermediate outputs are stored in the `artifacts/` directory for reproducibility and reuse.
-
----
-
-## Tech Stack
-- Python
-- Scikit-learn
-- Pandas, NumPy
-- Logging module
-- Flask
-
----
-
-## Key Highlights
-- End-to-end ML pipeline implementation
-- Automated model selection
-- Production-oriented logging and artifact management
-- Clean, modular project structure
-
+## Interfaces
+<table>
+  <tr>
+    <td><img src="https://github.com/bigyan6665/ExpensesPrediction/blob/main/screenshots/Screenshot%202025-12-29%20224054.png?raw=true" width="400"/></td>
+    <td><img src="https://github.com/bigyan6665/ExpensesPrediction/blob/main/screenshots/Screenshot%202025-12-29%20225939.png?raw=true" width="400"/></td>
+  </tr>
+</table>
