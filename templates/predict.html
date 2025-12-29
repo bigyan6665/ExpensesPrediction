@@ -1,0 +1,195 @@
+<!-- # age,sex,bmi,children,smoker,region,expenses -->
+<!-- Unique values in sex = ['female' 'male']
+Unique values in smoker = ['yes' 'no']
+Unique values in region = ['southwest' 'southeast' 'northwest' 'northeast'] -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Expenses Prediction</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .container {
+        background: #ffffff;
+        width: 100%;
+        max-width: 450px;
+        padding: 30px 35px;
+        border-radius: 12px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #333;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 6px;
+        color: #555;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 14px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        outline: none;
+        transition: border-color 0.3s, box-shadow 0.3s;
+      }
+
+      input:focus,
+      select:focus {
+        border-color: #4facfe;
+        box-shadow: 0 0 0 2px rgba(79, 172, 254, 0.2);
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        background: #4facfe;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s;
+      }
+
+      button:hover {
+        background: #3a9df5;
+        transform: translateY(-1px);
+      }
+
+      .result {
+        margin-top: 20px;
+        padding: 12px;
+        background: #f4f8ff;
+        border-left: 5px solid #4facfe;
+        border-radius: 6px;
+        color: #333;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      @media (max-width: 500px) {
+        .container {
+          margin: 20px;
+          padding: 25px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Expenses Prediction</h1>
+<form action="{{ url_for('predict_datapoint') }}" method="post">
+
+    <!-- Sex -->
+    <label>Sex</label>
+    <select name="sex" required>
+      <option value="" disabled>Select your sex</option>
+      <option value="male" {{ 'selected' if data and data.sex == 'male' }}>Male</option>
+      <option value="female" {{ 'selected' if data and data.sex == 'female' }}>Female</option>
+    </select>
+
+    <br><br>
+
+    <!-- Smoker -->
+    <label>Smoker</label>
+    <select name="smoker" required>
+      <option value="" disabled>Do you smoke?</option>
+      <option value="yes" {{ 'selected' if data and data.smoker == 'yes' }}>Yes</option>
+      <option value="no" {{ 'selected' if data and data.smoker == 'no' }}>No</option>
+    </select>
+
+    <br><br>
+
+    <!-- Region -->
+    <label>Region</label>
+    <select name="region" required>
+      <option value="" disabled>Select your region</option>
+      <option value="southeast" {{ 'selected' if data and data.region == 'southeast' }}>South East</option>
+      <option value="southwest" {{ 'selected' if data and data.region == 'southwest' }}>South West</option>
+      <option value="northeast" {{ 'selected' if data and data.region == 'northeast' }}>North East</option>
+      <option value="northwest" {{ 'selected' if data and data.region == 'northwest' }}>North West</option>
+    </select>
+
+    <br><br>
+
+    <!-- Age -->
+    <label>Age</label>
+    <input
+      type="number"
+      name="age"
+      min="0"
+      max="100"
+      value="{{ data.age if data else '' }}"
+      required
+    />
+
+    <br><br>
+
+    <!-- BMI -->
+    <label>BMI</label>
+    <input
+      type="number"
+      name="bmi"
+      step="0.1"
+      min="0"
+      max="100"
+      value="{{ data.bmi if data else '' }}"
+      required
+    />
+
+    <br><br>
+
+    <!-- Children -->
+    <label>Children</label>
+    <input
+      type="number"
+      name="children"
+      min="0"
+      max="10"
+      value="{{ data.children if data else '' }}"
+      required
+    />
+
+    <br><br>
+
+    <button type="submit">Predict Expenses</button>
+  </form>
+
+  {% if results %}
+    <h2>Predicted Expenses: {{ results }}</h2>
+  {% endif %}
+
+    </div>
+  </body>
+</html>
